@@ -7,7 +7,7 @@ import pandas as pd
 
 def process_query(query):
     # Dummy processing of queries: Append the query id to each query.
-    return {'qid': query.query_id, 'query': query.default_text() + ' ' + str(query.query_id)}
+    return {'qid': query.query_id, 'intent': 'informational'}
 
 
 def process_queries(queries_iter):
