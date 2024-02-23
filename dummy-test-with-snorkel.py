@@ -1,3 +1,10 @@
+import os
+
+if os.path.exists('data'):
+    os.remove('data')
+
+os.symlink('/opt/intents_labelling/data', 'data')
+
 from intents_labelling.snorkel_labelling.snorkel_labelling import SnorkelLabelling
 import pandas as pd
 
