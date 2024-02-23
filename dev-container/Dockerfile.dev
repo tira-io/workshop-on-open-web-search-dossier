@@ -1,0 +1,13 @@
+#docker build -t webis/wows-2024-baseline:0.0.1-snorkel -f Dockerfile.dev .
+FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime
+
+RUN apt-get update \
+	&& DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y git build-essential \
+	&& pip3 install tira snorkel spacy~=3.1.4 transformers numpy \
+	&& rm -Rf /root/.cache
+
+ENV PYTHONPATH=.:/opt/intents_labelling
+RUN git clone https://github.com/ProjectDossier/intents_labelling.git /opt/intents_labelling
+
+ADD top_level_domains.txt /opt/intents_labelling/data/helpers/top_level_domains.txt
+ADD snorkel_labelling.py /opt/intents_labelling/intents_labelling/snorkel_labelling/snorkel_labelling.py
