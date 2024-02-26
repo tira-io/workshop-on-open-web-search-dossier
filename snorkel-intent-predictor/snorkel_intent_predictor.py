@@ -5,13 +5,30 @@ from pathlib import Path
 import pandas as pd
 
 
+import os
+
+if os.path.exists('data'):
+    os.remove('data')
+
+os.symlink('/opt/intents_labelling/data', 'data')
+
+from intents_labelling.snorkel_labelling.snorkel_labelling import SnorkelLabelling
+
 def process_query(query):
+    df = pd.DataFrame([{'qid': '1', 'query': query.default_text(), 'url': ''}])
+    df = SnorkelLabelling().predict_first_level(df=df)
+    df = SnorkelLabelling().predict_second_level(df=df)
     # Dummy processing of queries: Append the query id to each query.
-    return {'qid': query.query_id, 'intent': 'informational'}
+    return {'qid': query.query_id, 'intent_level1': df.iloc[0]["Level_1"],'intent_level2':df.iloc[0]["Level_2"]}
 
 
 def process_queries(queries_iter):
     return pd.DataFrame([process_query(i) for i in queries_iter])
+
+
+
+
+
 
 
 if __name__ == '__main__':
