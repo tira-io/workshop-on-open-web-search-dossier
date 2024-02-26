@@ -18,8 +18,9 @@ def process_query(query):
     df = pd.DataFrame([{'qid': '1', 'query': query.default_text(), 'url': ''}])
     df = SnorkelLabelling().predict_first_level(df=df)
     df = SnorkelLabelling().predict_second_level(df=df)
+    df = SnorkelLabelling().create_final_label(df=df)
     # Dummy processing of queries: Append the query id to each query.
-    return {'qid': query.query_id, 'intent_level1': df.iloc[0]["Level_1"],'intent_level2':df.iloc[0]["Level_2"]}
+    return {'qid': query.query_id, 'intent_prediction': df.iloc[0]["Label"]}
 
 
 def process_queries(queries_iter):
