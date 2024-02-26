@@ -15,7 +15,7 @@ os.symlink('/opt/intents_labelling/data', 'data')
 from intents_labelling.snorkel_labelling.snorkel_labelling import SnorkelLabelling
 
 def process_query(query):
-    df = pd.DataFrame([{'qid': '1', 'query': query.default_text(), 'url': ''}])
+    df = pd.DataFrame([{'qid': '1', 'query': query.default_text(), 'url': 'https://www./'}])
     df = SnorkelLabelling().predict_first_level(df=df)
     df = SnorkelLabelling().predict_second_level(df=df)
     df = SnorkelLabelling().create_final_label(df=df)

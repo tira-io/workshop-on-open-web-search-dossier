@@ -1,9 +1,6 @@
 # Submissions of dossier
 
-This repository contains baseline submissions (document-processing, query-processing, re-ranking, and retrieval) together with a Github action and a development container configuration as starting point for submissions for the [](). 
-
-We recommend that you work either in Github Codespaces or using [dev containers with Docker](https://code.visualstudio.com/docs/devcontainers/containers). Github Codespaces are an easy option to start in a few minutes (free tier of 130 compute hours per month), whereas dev container with Docker might be interesting if you want to put a bit more focus on technical/deployment details.
-
+This repository contains TBD.
 
 ## Developing in Github Codespaces
 
@@ -20,14 +17,4 @@ To develop with dev containers, please:
 - Install [VS Code](https://code.visualstudio.com/download) and [Docker](https://docs.docker.com/engine/install/) on your machine
 - Clone this repository: `git clone ...`
 - Open the directory `jupyter-notebook-submissions` with VS Code (it should ask you to open the repository in a dev container)
-
-If you do not want to use VS Code, you can start and develop in a jupyter notebook via (please execute the command within the `jupyter-notebook-submissions` directory):
-
-```
-docker run --rm  -it -p 8888:8888 --entrypoint jupyter -w /workspace -v ${PWD}:/workspace webis/ir-lab-wise-2023:0.0.1 notebook --allow-root --ip 0.0.0.0
-```
-
-## Submitting Your Software
-
-Run the github action to submit your software.
 
